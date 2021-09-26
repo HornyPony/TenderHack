@@ -59,14 +59,14 @@ class _ContractorProfileScreenState extends State<ContractorProfileScreen> {
       case 1:
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => ContractorProfileScreen(),
+            builder: (context) => ConsumerProfileScreen(),
           ),
         );
         break;
       case 2:
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => ConsumerProfileScreen(),
+            builder: (context) => ContractorProfileScreen(),
           ),
         );
         break;
