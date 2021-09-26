@@ -1,19 +1,26 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tender_hack/screens/consumer_profile_screen.dart';
 import 'package:tender_hack/widgets/app_bar.dart';
 
-class ContractorProfileScreen extends StatelessWidget {
+class ContractorProfileScreen extends StatefulWidget {
+  @override
+  _ContractorProfileScreenState createState() =>
+      _ContractorProfileScreenState();
+}
+
+class _ContractorProfileScreenState extends State<ContractorProfileScreen> {
+  int menuValue = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar.customAppBar(context),
+      appBar: appBar(context),
       body: ContractorProfileBody(),
     );
   }
 
-  Widget appBar() {
+  appBar(BuildContext context) {
     return AppBar(
       title: Image.asset(
         'assets/images/logo.png',
@@ -27,7 +34,10 @@ class ContractorProfileScreen extends StatelessWidget {
             Icons.menu,
             color: Color(0xFF264B82),
           ),
-          onSelected: handleClick,
+          onSelected: (value) {
+            menuValue = value as int;
+            handleClick(menuValue, context);
+          },
           color: Color(0xFFE7EEF7),
           itemBuilder: (context) => [
             PopupMenuItem(
@@ -44,7 +54,7 @@ class ContractorProfileScreen extends StatelessWidget {
     );
   }
 
-  void handleClick(int value) {
+  void handleClick(int value, BuildContext context) {
     switch (value) {
       case 1:
         Navigator.of(context).pushReplacement(
@@ -54,6 +64,11 @@ class ContractorProfileScreen extends StatelessWidget {
         );
         break;
       case 2:
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => ConsumerProfileScreen(),
+          ),
+        );
         break;
     }
   }

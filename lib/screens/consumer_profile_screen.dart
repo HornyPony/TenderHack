@@ -1,15 +1,76 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tender_hack/screens/contractor/contractor_profile_screen.dart';
 import 'package:tender_hack/widgets/app_bar.dart';
 
-class ConsumerProfileScreen extends StatelessWidget {
+class ConsumerProfileScreen extends StatefulWidget {
+  @override
+  _ConsumerProfileScreenState createState() => _ConsumerProfileScreenState();
+}
+
+class _ConsumerProfileScreenState extends State<ConsumerProfileScreen> {
+  int menuValue = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar.customAppBar(context),
+      appBar: appBar(context),
       body: ConsumerProfileBody(),
     );
+  }
+
+  appBar(BuildContext context) {
+    return AppBar(
+      title: Image.asset(
+        'assets/images/logo.png',
+        width: 100.w,
+        height: 30.h,
+      ),
+      elevation: 3.w,
+      actions: [
+        PopupMenuButton(
+          icon: Icon(
+            Icons.menu,
+            color: Color(0xFF264B82),
+          ),
+          onSelected: (value) {
+            menuValue = value as int;
+            handleClick(menuValue, context);
+          },
+          color: Color(0xFFE7EEF7),
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              child: Text("Заказчик"),
+              value: 1,
+            ),
+            PopupMenuItem(
+              child: Text("Поставщик"),
+              value: 2,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  void handleClick(int value, BuildContext context) {
+    switch (value) {
+      case 1:
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => ContractorProfileScreen(),
+          ),
+        );
+        break;
+      case 2:
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => ConsumerProfileScreen(),
+          ),
+        );
+        break;
+    }
   }
 }
 

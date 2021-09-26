@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/*
 class CustomAppbar {
   static customAppBar(BuildContext context) {
     return AppBar(
@@ -32,13 +33,5 @@ class CustomAppbar {
       ],
     );
   }
-
-  void handleClick(int value) {
-    switch (value) {
-      case 'Logout':
-        break;
-      case 'Settings':
-        break;
-    }
-  }
 }
+*/
